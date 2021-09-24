@@ -1,10 +1,9 @@
 import Image from 'next/image';
 
 export default function CollectionDetails(props) {
-  console.log(props)
   return (
     <div 
-      className="block grid md:grid-cols-1 md:grid-cols-3 gap-4 bg-purple-300 border-4 rounded-md border-gray-600 shadow-md py-6 px-8 text-center"
+      className="block grid md:grid-cols-1 md:grid-cols-3 gap-4 bg-purple-200 border-4 rounded-xl border-gray-700 shadow-md py-6 px-8 text-center"
       key={props.collection.slug}
     >
       <div className="col-span-1">
