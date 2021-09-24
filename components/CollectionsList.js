@@ -24,5 +24,5 @@ export default function CollectionsList() {
   }
   
   // render data
-  return <div className="grid sm:grid-cols-1 md:grid-cols-4 gap-8 container mx-auto mt-20 px-6">{content}</div>;
+  return <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8 container mx-auto mt-20 px-6">{content}</div>;
 }
