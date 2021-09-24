@@ -1,10 +1,16 @@
 import Image from 'next/image';
 
 export default function CollectionDetails(props) {
-  console.log(props)
+  let volume = props.collection.stats.total_volume;
+  if (volume >= 1000) {
+    volume = `${(volume / 1000).toFixed(1)}k`
+  } else {
+    volume = volume.toFixed(1);
+  }
+  
   return (
     <div 
-      className="m-5 border-4 rounded-md border-gray-600 shadow-md pt-6 pl-8 pr-8 pb-6 w-full block grid grid-cols-3 gap-4 bg-purple-300"
+      className="block grid md:grid-cols-1 md:grid-cols-3 gap-4 bg-blue-500 bg-opacity-40 border-2 rounded-xl border-blue-900 shadow-lg py-6 px-8 text-center"
       key={props.collection.slug}
     >
       <div className="col-span-1">
@@ -16,10 +22,43 @@ export default function CollectionDetails(props) {
           className="rounded-full text-center"
         />
       </div>
-      <div className="col-span-2">
-        <h3 className="text-2xl">{props.collection.name}</h3>
-        <p className="text-purple-900 font-bold text-2xl"><span className="text-gray-700 font-normal text-lg">Floor Price: </span>{props.collection.stats.floor_price}</p>
-        <p className="text-purple-900 font-bold text-2xl"><span className="text-gray-700 font-normal text-lg">Volume: </span>{Math.round(props.collection.stats.total_volume)} ETH</p>
+      <div className="sm:col-span-2 md:col-span-2 text-center md:text-left">
+        <h3 className="text-2xl text-blue-900 font-bold">{props.collection.name}</h3>
+        <div className="mt-4 flex md:space-x-4 justify-center md:justify-start">
+          <div className="inline-block">
+            <div className="text-white font-bold text-2xl md:text-xl relative pl-7 text-left">
+              <div className="absolute left-0 -bottom-2 left-0">
+                <Image
+                  src="/eth.png"
+                  width={35}
+                  height={35}
+                  key={props.collection.slug}
+                />
+              </div>
+              {props.collection.stats.floor_price.toFixed(2)}
+            </div>
+            <p className="text-gray-900 font-normal text-lg text-center pl-7 md:pl-0">
+              Floor Price
+            </p>
+          </div>
+          <div className="inline-block">
+            <div className="text-white font-bold text-2xl md:text-xl relative pl-7 text-left">
+              <div className="absolute left-0 -bottom-2 -left-0">
+                <Image
+                  src="/eth.png"
+                  width={35}
+                  height={35}
+                  key={props.collection.slug}
+                />
+              </div>
+              {volume}
+            </div>
+            <p className="text-gray-900 font-normal text-lg text-left pl-4 md:pl-3">
+              Volume
+            </p>
+          </div>
+        </div>
+
       </div>
     </div>
   )
