@@ -13,7 +13,7 @@ export default function CollectionsList() {
     content = <div>failed to load</div>
   }
   
-  if (true) {
+  if (!data) {
     content = <div className="col-span-3 flex justify-center"><div className="animate-spin rounded-full border-4 border-dotted border-blue-500 h-24 w-24"></div></div>
   } else {
     content = data.map((collection) => { return (
