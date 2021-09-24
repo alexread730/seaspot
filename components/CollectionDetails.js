@@ -27,7 +27,7 @@ export default function CollectionDetails(props) {
         <div className="mt-4 flex md:space-x-4 justify-center md:justify-start">
           <div className="inline-block">
             <div className="text-white font-bold text-2xl md:text-xl relative pl-7 text-left">
-              <div className="absolute left-0 -bottom-2 left-0 md:-left-2">
+              <div className="absolute left-0 -bottom-2 left-0">
                 <Image
                   src="/eth.png"
                   width={35}
