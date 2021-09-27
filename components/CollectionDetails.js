@@ -9,7 +9,7 @@ export default function CollectionDetails(props) {
   }
   
   return (
-    <a href={`https://opensea.io/collection/${props.collection.slug}`} target="_blank"> 
+    <a href={`https://opensea.io/collection/${props.collection.slug}`} target="_blank" rel="noreferrer"> 
       <div 
         className="block grid md:grid-cols-1 md:grid-cols-3 gap-4 bg-blue-500 bg-opacity-40 border-2 rounded-xl border-blue-900 shadow-lg py-6 px-8 text-center"
         key={props.collection.slug}
