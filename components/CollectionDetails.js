@@ -21,6 +21,7 @@ export default function CollectionDetails(props) {
             height={100}
             key={props.collection.slug}
             className="rounded-full text-center"
+            alt="Opensea Collection Image"
           />
         </div>
         <div className="sm:col-span-2 md:col-span-2 text-center md:text-left">
@@ -34,6 +35,7 @@ export default function CollectionDetails(props) {
                     width={35}
                     height={35}
                     key={props.collection.slug}
+                    alt="Ethereum Logo"
                   />
                 </div>
                 {props.collection.stats.floor_price.toFixed(2)}
@@ -50,6 +52,7 @@ export default function CollectionDetails(props) {
                     width={35}
                     height={35}
                     key={props.collection.slug}
+                    alt="Ethereum Logo"
                   />
                 </div>
                 {volume}
