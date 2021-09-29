@@ -2,45 +2,38 @@ import Head from "next/head";
 import Header from "../components/Header.js";
 import CollectionsList from "../components/CollectionsList";
 import ConnectWallet from "../components/ConnectWallet";
-import React, { Component, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AddressContext } from "../components/AddressContext";
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        ethAddress: "",
-        setEthAddress: this.setEthAddress
-      };
-      
-    this.setEthAddress = this.setEthAddress.bind(this);
-  }
+export default function Home() {
+  const [ethAddress, setEthAddress] = useState('bit');
+  const [isMobile, setIsMobile] = useState(false);
   
-  setEthAddress = () => {
+  const [getEthAddress, setEthAdressGetter] = useState(() => () => {
     const res = window.ethereum.request({ method: 'eth_requestAccounts' });
+    
     res.then((response) => {
       const address = response[0];
-      this.setState({ ethAddress: address });
-    })
-  };
-
-  render () {
-    return (
-      <div className="bg-gradient-to-b from-blue-400 to-green-200 min-h-screen md:min-w-full sm:min-w-full container mx-auto py-20">
-        <Head>
-          <title>SeaSpot</title>
-          <meta name="description" content="User Dashboard" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <Header />
-        <AddressContext.Provider value={this.state} >
-          <ConnectWallet />
-          <CollectionsList />
-        </AddressContext.Provider>
-        <footer></footer>
-      </div>
-    );
-  }
+      setEthAddress(address);
+      setAddressContextValues({ethAddress: address, getEthAddress: getEthAddress })
+    });
+  });
+  
+  const [addressContextValue, setAddressContextValues] = useState({ethAddress: ethAddress, getEthAddress: getEthAddress })
+  
+  return (
+    <div className="bg-gradient-to-b from-blue-400 to-green-200 min-h-screen md:min-w-full sm:min-w-full container mx-auto py-20">
+      <Head>
+        <title>SeaSpot</title>
+        <meta name="description" content="User Dashboard" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Header />
+      <AddressContext.Provider value={addressContextValue} >
+        <ConnectWallet />
+        <CollectionsList />
+      </AddressContext.Provider>
+      <footer></footer>
+    </div>
+  );
 }
-
-export default Home;
