@@ -22,7 +22,7 @@ export default function Home() {
   const [addressContextValue, setAddressContextValues] = useState({ethAddress: ethAddress, getEthAddress: getEthAddress })
   
   return (
-    <div className="bg-gradient-to-b from-blue-400 to-green-200 min-h-screen md:min-w-full sm:min-w-full container mx-auto py-20">
+    <div className="bg-gradient-to-b from-blue-400 to-green-200 min-h-screen min-w-full container mx-auto py-20">
       <Head>
         <title>SeaSpot</title>
         <meta name="description" content="User Dashboard" />
