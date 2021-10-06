@@ -44,7 +44,7 @@ export default function Home() {
       </Head>
       <Header />
       <AddressContext.Provider value={addressContextValue} >
-        {ethAddress.length >= 40 || ethAddress.length <= 42 ? false : <ConnectWallet isMobile={isMobile}/>}
+        {ethAddress.length >= 40 && ethAddress.length <= 42 ? false : <ConnectWallet isMobile={isMobile}/>}
         <CollectionsList />
       </AddressContext.Provider>
       <footer></footer>
