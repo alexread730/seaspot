@@ -8,7 +8,7 @@ export default function ConnectWallet(props) {
   const addressContext = useContext(AddressContext);
   
   function openDeepLink() {
-    window.open("https://metamask.app.link/dapp/seaspot-aw383m30m-alexread730.vercel.app/")
+    window.open("https://metamask.app.link/dapp/seaspot.vercel.app")
   }
   
   return (
