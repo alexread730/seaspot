@@ -35,7 +35,7 @@ export default function Home() {
       </Head>
       <Header />
       <AddressContext.Provider value={addressContextValue} >
-        <ConnectWallet />
+        {ethAddress ? false : <ConnectWallet />}
         <CollectionsList />
       </AddressContext.Provider>
       <footer></footer>
