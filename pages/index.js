@@ -10,14 +10,19 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
   
   const [getEthAddress, setEthAdressGetter] = useState(() => () => {
-    const res = window.ethereum.request({ method: 'eth_requestAccounts' });
-    
-    res.then((response) => {
-      const address = response[0];
-      setEthAddress(address);
-      setAddressContextValues({ethAddress: address, getEthAddress: getEthAddress })
-    });
+    if (window.ethereum) {
+      const res = window.ethereum.request({ method: 'eth_requestAccounts' });
+      res.then((response) => {
+        const address = response[0];
+        setEthAddress(address);
+        setAddressContextValues({ethAddress: address, getEthAddress: getEthAddress })
+      });  
+    }
   });
+  
+  useEffect(() => {
+    getEthAddress()
+  }, []);
   
   const [addressContextValue, setAddressContextValues] = useState({ethAddress: ethAddress, getEthAddress: getEthAddress })
   
