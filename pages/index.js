@@ -6,8 +6,17 @@ import React, { useState, useEffect } from "react";
 import { AddressContext } from "../components/AddressContext";
 
 export default function Home() {
-  const [ethAddress, setEthAddress] = useState('bit');
+  const [ethAddress, setEthAddress] = useState('null');
   const [isMobile, setIsMobile] = useState(false);
+  
+  function checkMobile() {
+    let lessThanMobileWidth = window.innerWidth < 768;
+    setIsMobile(lessThanMobileWidth);
+    
+    if (lessThanMobileWidth) {
+      getEthAddress();  
+    }
+  }
   
   const [getEthAddress, setEthAdressGetter] = useState(() => () => {
     if (window.ethereum) {
@@ -21,7 +30,7 @@ export default function Home() {
   });
   
   useEffect(() => {
-    getEthAddress()
+    checkMobile();
   }, []);
   
   const [addressContextValue, setAddressContextValues] = useState({ethAddress: ethAddress, getEthAddress: getEthAddress })
@@ -35,7 +44,7 @@ export default function Home() {
       </Head>
       <Header />
       <AddressContext.Provider value={addressContextValue} >
-        {ethAddress ? false : <ConnectWallet />}
+        {ethAddress.length >= 40 || ethAddress.length <= 42 ? false : <ConnectWallet isMobile={isMobile}/>}
         <CollectionsList />
       </AddressContext.Provider>
       <footer></footer>
