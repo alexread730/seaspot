@@ -32,5 +32,5 @@ export default function CollectionsList() {
   }
   
   // render data
-  return <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8 container mx-auto px-6">{content}</div>;
+  return <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-8 container mt-16 mx-auto px-6">{content}</div>;
 }

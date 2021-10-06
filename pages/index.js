@@ -6,18 +6,32 @@ import React, { useState, useEffect } from "react";
 import { AddressContext } from "../components/AddressContext";
 
 export default function Home() {
-  const [ethAddress, setEthAddress] = useState('bit');
+  const [ethAddress, setEthAddress] = useState('null');
   const [isMobile, setIsMobile] = useState(false);
   
-  const [getEthAddress, setEthAdressGetter] = useState(() => () => {
-    const res = window.ethereum.request({ method: 'eth_requestAccounts' });
+  function checkMobile() {
+    let lessThanMobileWidth = window.innerWidth < 768;
+    setIsMobile(lessThanMobileWidth);
     
-    res.then((response) => {
-      const address = response[0];
-      setEthAddress(address);
-      setAddressContextValues({ethAddress: address, getEthAddress: getEthAddress })
-    });
+    if (lessThanMobileWidth) {
+      getEthAddress();  
+    }
+  }
+  
+  const [getEthAddress, setEthAdressGetter] = useState(() => () => {
+    if (window.ethereum) {
+      const res = window.ethereum.request({ method: 'eth_requestAccounts' });
+      res.then((response) => {
+        const address = response[0];
+        setEthAddress(address);
+        setAddressContextValues({ethAddress: address, getEthAddress: getEthAddress })
+      });  
+    }
   });
+  
+  useEffect(() => {
+    checkMobile();
+  }, []);
   
   const [addressContextValue, setAddressContextValues] = useState({ethAddress: ethAddress, getEthAddress: getEthAddress })
   
@@ -30,7 +44,7 @@ export default function Home() {
       </Head>
       <Header />
       <AddressContext.Provider value={addressContextValue} >
-        <ConnectWallet />
+        {ethAddress.length >= 40 && ethAddress.length <= 42 ? false : <ConnectWallet isMobile={isMobile}/>}
         <CollectionsList />
       </AddressContext.Provider>
       <footer></footer>
