@@ -108,10 +108,10 @@ export default function CollectionDetails(props) {
               </p>
             </div>
             <div className="inline-block">
-              <div className="text-white font-bold text-2xl md:text-xl relative text-center">
+              <div className="text-white font-bold text-2xl md:text-xl relative pl-8 text-center">
                 {props.collection.stats.one_day_sales}
               </div>
-              <p className="text-gray-900 font-normal text-base text-center pl-0 md:pl-0">
+              <p className="text-gray-900 font-normal text-base text-center pl-0 md:pl-8">
                 One Day Sales
               </p>
             </div>
