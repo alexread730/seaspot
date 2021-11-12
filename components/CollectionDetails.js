@@ -66,7 +66,7 @@ export default function CollectionDetails(props) {
         </div>
         <div className="sm:col-span-2 md:col-span-3 text-center md:text-left">
           <div className="mt-4 flex md:space-x-4 justify-between">
-            <div className="inline-block">
+            <div className="inline-block w-1/2">
               <div className="text-white font-bold text-2xl md:text-xl relative pl-7 text-left">
                 <div className="absolute left-0 -bottom-2 -left-1">
                   <Image
@@ -83,26 +83,28 @@ export default function CollectionDetails(props) {
                 Floor Price
               </p>
             </div>
-            <div className="inline-block">
-              <div className="text-white font-bold text-2xl md:text-xl relative pl-5 text-center">
-                <div className="absolute left-0 -bottom-2 -left-3">
-                  <Image
-                    src="/eth.png"
-                    width={35}
-                    height={35}
-                    key={props.collection.slug}
-                    alt="Ethereum Logo"
-                  />
+            <div className="inline-block w-1/2">
+              <div className="text-white font-bold text-2xl md:text-xl text-center">
+                <div className="w-min my-0 mx-auto relative">
+                  <div className="absolute -left-8 -bottom-2">
+                    <Image
+                      src="/eth.png"
+                      width={35}
+                      height={35}
+                      key={props.collection.slug}
+                      alt="Ethereum Logo"
+                    />
+                  </div>
+                  { volume }
                 </div>
-                { volume }
               </div>
-              <p className="text-gray-900 font-normal text-base text-center pl- md:pl-0">
+              <p className="text-gray-900 font-normal text-base text-center pl-0 md:pl-0">
                 Volume
               </p>
             </div>
           </div>
           <div className="mt-4 flex md:space-x-4 justify-between">
-            <div className="inline-block">
+            <div className="inline-block w-1/2">
               <div className="text-white font-bold text-2xl md:text-xl relative pl-4 text-center">
                 <div className="absolute -bottom-2 left-0">
                   <Image
@@ -119,8 +121,8 @@ export default function CollectionDetails(props) {
                 Average Price
               </p>
             </div>
-            <div className="inline-block">
-              <div className="text-white font-bold text-2xl md:text-xl relative pl-8 text-center">
+            <div className="inline-block w-1/2">
+              <div className="text-white font-bold text-2xl md:text-xl relative pl-0 text-center">
                 {collectionStats ? collectionStats.stats.one_day_sales : 0}
               </div>
               <p className="text-gray-900 font-normal text-base text-center pl-0 md:pl-0">
