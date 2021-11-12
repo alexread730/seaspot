@@ -9,12 +9,17 @@ export default function CollectionsList() {
   const addressContext = useContext(AddressContext);
   const loader = (<div className="col-span-3 flex justify-center"><div className="animate-spin rounded-full border-4 border-dotted border-blue-500 h-24 w-24"></div></div>)
   const addressPresent = addressContext.ethAddress.length > 5;
-  
-  const apiUrl = `https://api.opensea.io/api/v1/collections?offset=0&limit=100&asset_owner=${addressContext.ethAddress}`;  
-  let { data, error } = useSWR(addressPresent ? apiUrl : null, fetcher);  
-  
   let content;
-  if (error) {
+  let collectionSlugs;
+  
+  const apiUrl = `https://api.opensea.io/api/v1/collections?offset=0&limit=100&asset_owner=${addressContext.ethAddress}`;
+  
+  const { data: collectionData, error: collectionError } = useSWR(addressPresent ? apiUrl : null, fetcher);
+  if (collectionData) {
+    collectionSlugs = collectionData.map((collection) => { return collection.slug });
+  }
+  
+  if (collectionError) {
     content = <div>failed to load</div>
   }
   
@@ -22,10 +27,10 @@ export default function CollectionsList() {
     return <div></div>
   }
   
-  if (!data) {
+  if (!collectionData) {
     content = loader;
   } else {
-    content = data.map((collection) => { return (
+    content = collectionData.map((collection) => { return (
         <CollectionDetails collection={collection} key={collection.slug}/>
       )}
     )
